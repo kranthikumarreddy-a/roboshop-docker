@@ -1,11 +1,10 @@
 FROM node:20
 # this creates /app and move there
 WORKDIR /app
-ENV MONGO="true" \
-    MONGO_URL="mongodb://mongodb:27017/catalogue" \
-    REDIS_URL="redis://redis:6379"
-EXPOSE 8080
 COPY package.json .
 COPY *.js .
 RUN npm install
+ENV REDIS_HOST="redis" \
+    CATALOGUE_HOST="catalogue" \
+    CATALOGUE_PORT="8080"
 CMD ["node", "server.js"]
