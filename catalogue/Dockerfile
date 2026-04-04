@@ -1,4 +1,4 @@
-FROM node:20
+FROM node:18-bullseye 
 # this creates and moves to this directory
 WORKDIR /app
 COPY package.json .
