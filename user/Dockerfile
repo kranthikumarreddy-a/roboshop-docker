@@ -1,4 +1,4 @@
-FROM node:18-bullseye 
+FROM node:20
 # this creates /app and move there
 WORKDIR /app
 ENV MONGO="true" \
