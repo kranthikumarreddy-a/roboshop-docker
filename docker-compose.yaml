@@ -24,6 +24,7 @@ services:
     - catalogue
     - user
     - cart
+    - shipping
   user:
     build:
       context: ./user
@@ -33,19 +34,28 @@ services:
     - redis
   cart:
     build:
-      context: ./catalogue
-    image: Kranthireddy152/catalogue:1.0.0  
-    container_name: catalogue
-  redis:
-    image: redis:7
-    container_name: redis
-    depends_on: 
+      context: ./cart
+    image: Kranthireddy152/cart:1.0.0  
+    container_name: cart
+    depends_on:
     - redis
+    - catalogue
+  redis:
+    image: redis:7.0
+    container_name: redis
   mysql:
     build:
       context: ./mysql
     image: Kranthireddy152/mysql:1.0.0  
-    container_name: mysql   
+    container_name: mysql 
+  shipping:
+    build:
+      context: ./shipping
+    image: Kranthireddy152/shipping:1.0.0  
+    container_name: shipping
+    depends_on: 
+    - mysql   
+    - cart 
 networks:
   default:
     driver: bridge
