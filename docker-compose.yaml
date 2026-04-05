@@ -56,6 +56,12 @@ services:
     depends_on: 
     - mysql   
     - cart 
+  rabbitmq:
+     image: rabbitmq:3
+     environment:
+        RAABIRMQ_DEFAULT_USER: roboshop
+        RAABIRMQ_DEFAULT_PASS: roboshop123
+
 networks:
   default:
     driver: bridge
