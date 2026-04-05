@@ -1,4 +1,4 @@
-FROM FROM node:20-alpine 
+FROM node:20-alpine 
 # this creates and moves to this directory
 WORKDIR /app
 COPY package.json .
