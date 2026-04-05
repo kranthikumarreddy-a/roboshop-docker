@@ -3,12 +3,12 @@ services:
     build:
       context: ./mongodb
       dockerfile: Dockerfile
-    image: Kranthireddy152/mongodb:1.0.0
+    image: kranthireddy152/mongodb:1.0.0
     container_name: mongodb
   catalogue:
     build:
       context: ./catalogue
-    image: Kranthireddy152/catalogue:1.0.0  
+    image: kranthireddy152/catalogue:1.0.0  
     container_name: catalogue
     depends_on: 
     - mongodb
@@ -16,7 +16,7 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    image: Kranthireddy152/frontend:1.0.0
+    image: kranthireddy152/frontend:1.0.0
     container_name: frontend
     ports: 
     - "80:80"
@@ -29,7 +29,7 @@ services:
   user:
     build:
       context: ./user
-    image: Kranthireddy152/user:1.0.0  
+    image: kranthireddy152/user:1.0.0  
     container_name: user
     depends_on: 
     - redis
@@ -37,7 +37,7 @@ services:
   cart:
     build:
       context: ./cart
-    image: Kranthireddy152/cart:1.0.0  
+    image: kranthireddy152/cart:1.0.0  
     container_name: cart
     depends_on:
     - redis
@@ -48,12 +48,12 @@ services:
   mysql:
     build:
       context: ./mysql
-    image: Kranthireddy152/mysql:1.0.0  
+    image: kranthireddy152/mysql:1.0.0  
     container_name: mysql 
   shipping:
     build:
       context: ./shipping
-    image: Kranthireddy152/shipping:1.0.0  
+    image: kranthireddy152/shipping:1.0.0  
     container_name: shipping
     depends_on: 
     - mysql   
@@ -61,7 +61,7 @@ services:
   payment:
     build:
       context: ./payment
-    image: Kranthireddy152/payment:1.0.0  
+    image: kranthireddy152/payment:1.0.0  
     container_name: payment
     environment:
       CART_HOST: "cart"
