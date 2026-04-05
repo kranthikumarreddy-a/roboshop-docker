@@ -1,0 +1,53 @@
+services:
+  mongodb:
+    build:
+      context: ./mongodb
+      dockerfile: Dockerfile
+    image: Kranthireddy152/mongodb:1.0.0
+    container_name: mongodb
+  catalogue:
+    build:
+      context: ./catalogue
+    image: Kranthireddy152/catalogue:1.0.0  
+    container_name: catalogue
+    depends_on: 
+    - mongodb
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    image: Kranthireddy152/frontend:1.0.0
+    container_name: frontend
+    ports: 
+    - "80:80"
+    depends_on: 
+    - catalogue
+    - user
+    - cart
+  user:
+    build:
+      context: ./user
+    image: Kranthireddy152/user:1.0.0  
+    container_name: user
+    depends_on: 
+    - redis
+  cart:
+    build:
+      context: ./catalogue
+    image: Kranthireddy152/catalogue:1.0.0  
+    container_name: catalogue
+  redis:
+    image: redis:7
+    container_name: redis
+    depends_on: 
+    - redis
+  mysql:
+    build:
+      context: ./mysql
+    image: Kranthireddy152/mysql:1.0.0  
+    container_name: mysql   
+networks:
+  default:
+    driver: bridge
+    name: roboshop
+    external: false # if true, we need to create network manually
